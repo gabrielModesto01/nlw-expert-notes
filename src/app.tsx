@@ -2,10 +2,16 @@ import  LogoNLW  from './assets/logo-nlw-expert.svg'
 import NewNoteCard from './components/new-note-card'
 import NoteCard from './components/note-card'
 
+
+const note = {
+  date: new Date(),
+  content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Et cumque distinctio officiis molestias vitae temporibus, corporis facere atque accusamus reprehenderit aliquid, esse veniam dolores repellat. Veritatis consequatur aliquam deleniti maxime?'
+}
 export function App() {
   return (
     <div className='mx-auto max-w-6xl my-12 space-y-6'>
       <img src={LogoNLW} alt="NLW Expert" />
+      
       <form className='w-full '>
         <input 
           type="text" 
@@ -18,11 +24,8 @@ export function App() {
 
       <div className='grid grid-cols-3 auto-rows-[250px] gap-6'>
         <NewNoteCard />
-        <NoteCard nameNote='ha 2 dias' />
-        <NoteCard nameNote='ha 4 dias' />
-        <NoteCard nameNote='ha 6 dias' />
-        <NoteCard nameNote='ha 6 dias' />
-        <NoteCard nameNote='ha 6 dias' />
+        <NoteCard note={note} />
+        <NoteCard note={note} />
         
       </div>
     </div>
