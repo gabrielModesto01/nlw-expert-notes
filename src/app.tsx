@@ -28,11 +28,21 @@ export function App() {
       content,
     }
     
-    const notesArry = [newNote, ...notes]
+    const notesArray = [newNote, ...notes]
 
-    setNotes(notesArry)
+    setNotes(notesArray)
 
-    localStorage.setItem('notes', JSON.stringify(notesArry))
+    localStorage.setItem('notes', JSON.stringify(notesArray))
+  }
+
+  function onNoteDeleted(id: string) {
+    const notesArray = notes.filter(note=> {
+      return note.id !== id
+    })
+
+    setNotes(notesArray)
+
+    localStorage.setItem('notes', JSON.stringify(notesArray))
   }
 
   function handleSearch(event: ChangeEvent<HTMLInputElement>) {
@@ -46,7 +56,7 @@ export function App() {
     : notes
 
   return (
-    <div className='mx-auto max-w-6xl my-12 space-y-6'>
+    <div className='mx-auto max-w-6xl my-12 space-y-6 p-5'>
       <img src={LogoNLW} alt="NLW Expert" />
       
       <form className='w-full '>
@@ -60,12 +70,12 @@ export function App() {
 
       <div className='h-px bg-slate-700'/>
 
-      <div className='grid grid-cols-3 auto-rows-[250px] gap-6'>
+      <div className='grid grig-col-1 md: grid-col-2 lg:grid-cols-3 auto-rows-[250px] gap-6'>
         <NewNoteCard onNoteCreated={onNoteCreated}/>
         
         
         {filteredNotes.map(note => {
-          return <NoteCard key={note.id} note={note} />
+          return <NoteCard key={note.id} note={note}  onNoteDeleted={onNoteDeleted}/>
         })}
         
       </div>
